@@ -57,7 +57,7 @@ function calculateTax(incom: number, taxYear = 2022): number {
 calculateTax(10_000, 2023);
 
 // Objects then Type aliases
-// 
+//
 
 type Employee = {
   readonly id: number;
@@ -75,4 +75,54 @@ let employee: Employee = {
 // employee.id = 0  Error due to readonly Prop
 
 //
-// DRY principle , don't repeat yourself (is a principle of software development aimed at reducing repetition of information)
+// DRY principle (in prigramming) , don't repeat yourself (is a principle of software development aimed at reducing repetition of information)
+
+// Union types : in which we can give a variable or a function parameter more than onw type
+
+function kgToLbs(weight: number | string): number {
+  // Narrowing
+  if (typeof weight === "number") {
+    return weight * 2.2;
+  } else {
+    return parseInt(weight) * 2.2;
+  }
+}
+kgToLbs(10);
+kgToLbs("10kg");
+
+// intersection types have 2 or more types at the same time
+
+type Draggable = {
+  drag: (dr: number) => void;
+};
+
+type Resizable = {
+  resize: () => void;
+};
+
+type UIWidget = Draggable & Resizable;
+
+let textBox: UIWidget = {
+  drag: () => {},
+  resize: () => {},
+};
+
+// Literal Types (exact , specific)
+
+let Quantity: 50 | number;
+
+// Null values
+
+function greet(name: string | null | undefined) {
+  if (name) {
+    console.log(name.toUpperCase());
+  }
+  else {
+    console.log("Hola");
+  }
+}
+
+greet(undefined);
+
+
+//  null checking 
